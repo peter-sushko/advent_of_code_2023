@@ -23,9 +23,10 @@ def prizes_in_row(row):
     our_set.discard('')
     return len(our_set.intersection(winning_set))
 
-solution_array = np.ones(198) #constant for length of file
+solution_array = np.ones(198) # Constant for length of file.
 with open('data.txt', 'r', encoding='utf-8') as file:
     for index,file_row in enumerate(file):
         nums = prizes_in_row(file_row)
         solution_array[index + 1 : index + nums + 1] += solution_array[index]
+        # The line above increased the counter of all cards above the current card.
 solution_array.sum()
