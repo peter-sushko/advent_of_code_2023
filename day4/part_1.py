@@ -5,7 +5,7 @@ def prize_in_row(row):
     row (string): one row of input
     
     Returns:
-    int: 2*(number of matches)-1
+    int: 2*(number of matches-1)
 
     Examples:
     >>> prize_in_row('Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53')
