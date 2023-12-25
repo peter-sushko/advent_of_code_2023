@@ -4,7 +4,7 @@ For solving problem 6 part of advent of code 2023.
 import math
 import numpy as np
 
-def find_times_dists_part2():
+def parse_file_part2(): # A slight modification to part 1's fucntion.
     '''This function returns times and distances as ints.'''
     with open('data.txt', 'r', encoding='utf-8') as file:
         concatenated_times = ''.join(filter(str.isdigit, file.readline()))
@@ -40,6 +40,6 @@ def how_many_ways_to_win(ex_time, ex_distance):
     lower_bound = math.ceil(min(sol1,sol2))
     return upper_bound - lower_bound + 1
 
-TIME, DISTANCE = find_times_dists_part2()
+TIME, DISTANCE = parse_file_part2()
 ANSWER = how_many_ways_to_win(TIME, DISTANCE)
 print(ANSWER)
