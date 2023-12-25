@@ -1,14 +1,18 @@
+'''
+For solving advent of code puzzles day 4.
+'''
+
 import numpy as np
 
 def prizes_in_row(row):
     """This function finds how many matches were in the card
-    matches are identical numbers between and after a "|" symbol
+    matches are identical numbers between and after a "|" symbol.
     
     Parameters:
-    row (string): one row of input
+    row (string): one row of input.
     
     Returns:
-    int: number of matching numbers
+    int: number of matching numbers.
 
     Examples:
     >>> prize_in_row('Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53')
@@ -28,5 +32,4 @@ with open('data.txt', 'r', encoding='utf-8') as file:
     for index,file_row in enumerate(file):
         nums = prizes_in_row(file_row)
         solution_array[index + 1 : index + nums + 1] += solution_array[index]
-        # The line above increased the counter of all cards above the current card.
-solution_array.sum()
+print(solution_array.sum())

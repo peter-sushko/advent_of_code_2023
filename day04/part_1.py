@@ -1,8 +1,12 @@
+'''
+For solving advent of code puzzles day 4.
+'''
+
 def prize_in_row(row):
     """This function finds the winnings per row.
 
     Parameters:
-    row (string): one row of input
+    row (string): one row of input.
     
     Returns:
     int: 2*(number of matches-1)
