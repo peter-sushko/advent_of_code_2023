@@ -1,13 +1,13 @@
-"""
+'''
 To solve problem 7 part 2 of advent of code 2023.
-"""
+'''
 
 from collections import Counter
 import numpy as np
 from scipy.stats import rankdata
 
 def combo_score_part2(card: str):
-    """Calculate the combination score of a hand, including the flexibility of Jacks as wildcards.
+    '''Calculate the combination score of a hand, including the flexibility of Jacks as wildcards.
 
     In this scoring system, Jacks serve as flexible jokers that can substitute for any card.
     The count of Jacks is added to the count of the most common card(s) since they enhance 
@@ -32,7 +32,7 @@ def combo_score_part2(card: str):
         >>> combo_score_part2('335J5')
         32
         This is because we have a full house.
-    """
+    '''
 
     char_count = Counter(card)
     j_count = char_count['J']
@@ -44,7 +44,7 @@ def combo_score_part2(card: str):
     return int(most_common_count+j_count) * 10 + int(second_most_common_count)
 
 def tie_break_score_part2(card: str):
-    """Returns the tie break score of a hand.
+    '''Returns the tie break score of a hand.
 
     This time Jacks are jokers and their value is updated to 1.
 
@@ -59,7 +59,7 @@ def tie_break_score_part2(card: str):
     >>>tie_break_score('AT72Q')
     1410070212
     
-    """
+    '''
     values = {'A':14, 'K':13, 'Q':12, 'J':1, 'T':10}
     power = 4
     score = 0
@@ -73,7 +73,7 @@ def tie_break_score_part2(card: str):
     return int(score)
 
 def total_score(card:str):
-    """Calculate the total score for a given card.
+    '''Calculate the total score for a given card.
 
     The total score is computed as 10^10 times the combo score plus the tiebreak score.
     The scoring system assigns a unique score to each card, making it possible to 
@@ -86,7 +86,7 @@ def total_score(card:str):
 
     Returns:
         int: The total score of the card.
-    """
+    '''
     return 10**10 * combo_score_part2(card) + tie_break_score_part2(card)
 
 hands = []

@@ -1,13 +1,14 @@
-"""
-For solving advent of code problem 7 part 1
-"""
+'''
+For solving advent of code problem 7 part 1.
+'''
+
 from collections import Counter
 import numpy as np
 from scipy.stats import rankdata
 
 
 def combo_score(card: str):
-    """Returns the combination score of a hand.
+    '''Returns the combination score of a hand.
     
     The score is the concatenated count of the 2 most common cards.
     That is:
@@ -23,7 +24,7 @@ def combo_score(card: str):
     >>>combo_score('33556')
     22
     This is because we have two pair.
-    """
+    '''
     char_count = Counter(card)
     most_common_chars = char_count.most_common(2)
     most_common_count = most_common_chars[0][1] if most_common_chars else 0
@@ -32,7 +33,7 @@ def combo_score(card: str):
     return int(most_common_count) * 10 + int(second_most_common_count)
 
 def tie_break_score(card: str):
-    """Returns the tie break score of a hand.
+    '''Returns the tie break score of a hand.
     
     The tie break score is calculated as follows:
     value of first card times 100,000,000 plus
@@ -44,7 +45,7 @@ def tie_break_score(card: str):
     Example:
     >>>tie_break_score('AT72Q')
     1410070212
-    """
+    '''
     values = {'A':14, 'K':13, 'Q':12, 'J':11, 'T':10}
     power = 4
     score = 0
@@ -58,7 +59,7 @@ def tie_break_score(card: str):
     return int(score)
 
 def total_score(card:str):
-    """Calculate the total score for a given card.
+    '''Calculate the total score for a given card.
 
     The total score is computed as 10^10 times the combo score plus the tiebreak score.
     The scoring system assigns a unique score to each card, making it possible 
@@ -71,23 +72,23 @@ def total_score(card:str):
 
     Returns:
         int: The total score of the card. 
-    """
+    '''
     return 10**10 * combo_score(card) + tie_break_score(card)
 
 hands = []
 bets = []
 hand_scores = []
+# The code below generates a list of hands and a list of bets.
 with open('data.txt', 'r', encoding = 'utf-8') as file:
     for line in file:
         parts = line.strip().split()
         if len(parts) == 2:
             hands.append(parts[0])
             bets.append(int(parts[1]))
-# The code above generates a list of hands and a list of bets.
+
 for hand in hands:
     hand_scores.append(total_score(hand))
-# Now that we have a list of hands, make a list of scores.
+# Sort the hands.
 rankings =  rankdata(hand_scores, method='max').astype(int)
-# Now, make a list of rankings.
 ANSWER = np.dot(bets,rankings) # Finally, we need pairwise product.
 print(ANSWER)
